@@ -23,7 +23,6 @@ public class Image {
         //font height, width (presumed) 14, 8
         double decimalWidth = (double)width / charWidth;
         int charHeight = (int)(width / ((decimalWidth / 16) * 49));
-        System.out.println(charHeight);
         double decimalHeight = (double)height / charHeight;
         int posX = 0;
         int posY = 0;
