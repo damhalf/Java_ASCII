@@ -11,7 +11,10 @@ public class Image {
     private BufferedImage image;
     private int height;
     private int width;
-    private String[] charMap = new String[]{" ", ".", "'", "`", "2", "^", ",", ":", ";", "I", "l", "!", "i", ">", "<", "~", "+", "_", "-", "?", "]", "[", "}", "{", "1", ")", "(", "|", "\\", "/", "t", "f", "j", "r", "x", "n", "u", "v", "c", "z", "X", "Y", "U", "J", "C", "L", "Q", "0", "O", "Z", "m", "w", "q", "p", "d", "b", "k", "h", "a", "o", "*", "#", "M", "W", "&", "8", "%", "B", "@", "$"};
+    private String[] charMap = new String[]{" ", ".", "'", "`", "2", "^", ",", ":", ";", "I", "l", "!", "i", ">", "<", 
+        "~", "+", "_", "-", "?", "]", "[", "}", "{", "1", ")", "(", "|", "\\", "/", "t", "f", "j", "r", "x", "n", 
+        "u", "v", "c", "z", "X", "Y", "U", "J", "C", "L", "Q", "0", "O", "Z", "m", "w", "q", "p", "d", "b", "k", 
+        "h", "a", "o", "*", "#", "M", "W", "&", "8", "%", "B", "@", "$"};
 
     public Image (File file) throws IOException {
         this.image = ImageIO.read(file);
