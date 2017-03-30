@@ -1,8 +1,5 @@
-import javax.imageio.ImageIO;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -11,18 +8,18 @@ public class Image {
     private BufferedImage image;
     private int height;
     private int width;
-    private String[] charMap = new String[]{" ", ".", "'", "`", "2", "^", ",", ":", ";", "I", "l", "!", "i", ">", "<", 
-        "~", "+", "_", "-", "?", "]", "[", "}", "{", "1", ")", "(", "|", "\\", "/", "t", "f", "j", "r", "x", "n", 
-        "u", "v", "c", "z", "X", "Y", "U", "J", "C", "L", "Q", "0", "O", "Z", "m", "w", "q", "p", "d", "b", "k", 
-        "h", "a", "o", "*", "#", "M", "W", "&", "8", "%", "B", "@", "$"};
+    private String[] charMap = new String[]{" ", ".", "'", "`", "2", "^", ",", ":", ";", "I", "l", "!", "i", ">", "<",
+            "~", "+", "_", "-", "?", "]", "[", "}", "{", "1", ")", "(", "|", "\\", "/", "t", "f", "j", "r", "x", "n",
+            "u", "v", "c", "z", "X", "Y", "U", "J", "C", "L", "Q", "0", "O", "Z", "m", "w", "q", "p", "d", "b", "k",
+            "h", "a", "o", "*", "#", "M", "W", "&", "8", "%", "B", "@", "$"};
 
-    public Image (File file) throws IOException {
-        this.image = ImageIO.read(file);
+    public Image (BufferedImage inImg){
+        this.image = inImg;
         this.height = image.getHeight();
         this.width = image.getWidth();
     }
 
-    public String[][] getASCII(int charWidth) {
+    String[][] getASCII(int charWidth) {
         //font height, width (presumed) 14, 8
         double decimalWidth = (double)width / charWidth;
         int charHeight = (int)(width / ((decimalWidth / 16) * 49));
@@ -37,17 +34,14 @@ public class Image {
             blockWidth = (int)((i + 1) * decimalWidth - posX);
             for (int j = 0; j < charHeight; j++) {
                 blockHeight = (int)((j + 1) * decimalHeight - posY);
-                imageArray[j][i] = charMap[(int)(getAvgGray(posX, posY, blockWidth, blockHeight) / (256.0/charMap.length))];
+                imageArray[j][i] = charMap[(int)(getAvgGray(posX, posY, blockWidth, blockHeight) /
+                        (256.0 / charMap.length))];
                 posY += blockHeight;
             }
             posY = 0;
             posX += blockWidth;
         }
         return imageArray;
-    }
-
-    public String[][] getASCII() {
-        return getASCII(500);
     }
 
     // Nothing sophisticated here, I'm afraid
@@ -62,11 +56,12 @@ public class Image {
         return avgGray / (blockHeight * blockWidth);
     }
 
-    public BufferedImage getImage() {
+    BufferedImage getImage() {
         return image;
     }
 
-    public void toGrayscale(String method) {
+    // Expected methods are "average", "lightness" or "luminosity".
+    void toGrayscale(String method) {
         Color color;
         int gray;
 
