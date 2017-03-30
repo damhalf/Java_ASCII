@@ -28,10 +28,6 @@ public class Arguments {
         return boolCons;
     }
 
-    public boolean isQuit() {
-        return boolQuit;
-    }
-
     /*  Checks whether all the arguments fit into expected models and
         assigns their values to retrievable variables.
      */
@@ -57,8 +53,8 @@ public class Arguments {
                 oFile.getParentFile().mkdirs();
                 try {
                     oFile.createNewFile();
+                // File can't exist, we've deleted it.
                 } catch (IOException ioExc) {
-                    // File exists, but we'll just overwrite it.
                 }
             } else if (args[i].equals("-w")) {
                 i++;
