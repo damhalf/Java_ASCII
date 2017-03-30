@@ -14,30 +14,32 @@ public class Root {
         image.toGrayscale("luminosity");
         imgArray = image.getASCII(arguments.getImgWidth());
 
-        // If isCons, only prints results in console
-        if (arguments.isCons()) {
-            for (String[] y : imgArray) {
-                for (String x : y) {
-                    System.out.print(x);
+        try {
+            FileWriter writer = new FileWriter(arguments.getoFile());
+
+            // If isCons, also print results in console
+            if (arguments.isCons()) {
+                for (String[] y : imgArray) {
+                    for (String x : y) {
+                        writer.write(x);
+                        System.out.print(x);
+                    }
+                    writer.write("\n");
+                    System.out.println();
                 }
-                System.out.println();
-            }
-        // Else saves it to arguments.oFile
-        } else {
-            try {
-                FileWriter writer = new FileWriter(arguments.getoFile());
+            // Else just save it to arguments.oFile
+            } else {
                 for (String[] y : imgArray) {
                     for (String x : y) {
                         writer.write(x);
                     }
                     writer.write("\n");
                 }
-            // If everything works as intended, we should never hit this block
-            } catch (IOException ioExc) {
-                System.out.println(ioExc + ": Something went awry.");
-                System.exit(1);
             }
-
+        // If everything works as intended, we should never hit this block
+        } catch (IOException ioExc) {
+            System.out.println(ioExc + ": Something went awry.");
+            System.exit(1);
         }
     }
 }
