@@ -97,7 +97,7 @@ public class Arguments {
                 "-o <String>: Output file name, defaults to \"YourWaifuIsGarbage.txt\" in the user.dir\n" +
                 "\tWARNING! Code does not provide a cleanup for created directories!\n" +
                 "-w <Integer>: The count of characters on the final image\n" +
-                "-c: Prints the result in console only\n" +
+                "-c: Also prints the result in the console\n" +
                 "-h: Acts all passive aggressive but still helps out\n" +
                 "-q: Quits the program\n\n");
     }
