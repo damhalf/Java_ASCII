@@ -50,7 +50,11 @@ public class Arguments {
             } else if (args[i].equals("-o")) {
                 i++;
                 oFile = new File(args[i]);
-                oFile.getParentFile().mkdirs();
+                try {
+                    oFile.getParentFile().mkdirs();
+                } catch (NullPointerException npExc) {
+                    // No directories needed.
+                }
                 try {
                     oFile.createNewFile();
                 // File can't exist, we've deleted it.
